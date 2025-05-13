@@ -1,0 +1,12 @@
+* {
+  border: dashed 2px rgba(168, 53, 0, 0.664);
+  box-sizing: border-box;
+}
+
+body {
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
