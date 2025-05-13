@@ -1,10 +1,32 @@
 let gridWidth = 16;
 let gridLength = 16;
 
+const inpGridSize = document.querySelector("#grid-size");
+const btnChangeGrid = document.querySelector("#change-grid");
+btnChangeGrid.addEventListener("click", () => validateInput());
+
 const canvas = document.querySelector("#container");
-let pixels;
+
+function validateInput(){
+  gridSize = Math.floor(inpGridSize.value);
+  if (gridSize > 0 && gridSize <= 100){
+    gridWidth = gridSize;
+    gridLength = gridSize;
+
+    createCanvas();
+    pixelListeners();
+  } else {
+    window.alert("Value must be from 1 to 100");
+    inpGridSize.value = 16;
+  }
+}
 
 function createCanvas(){
+  // clears the container before creating the canvas
+  while (canvas.firstElementChild){
+    canvas.removeChild(canvas.firstElementChild)
+  }
+
   for (let canvas_Y = 0; canvas_Y < gridWidth; canvas_Y++){
     const pixelRow = document.createElement("div");
     pixelRow.setAttribute("class", "row");
@@ -26,14 +48,17 @@ function createCanvas(){
   }
 }
 
-pixels = document.getElementsByClassName("pixel");
-const totalPixels = pixels.length;
+function pixelListeners(){
+  const pixels = document.getElementsByClassName("pixel");
+  const totalPixels = pixels.length;
+  
+  for (let px_index = 0; px_index < totalPixels; px_index++){
+    pixels[px_index].addEventListener("mouseover", () => changeColor(pixels[px_index]))
+  }
 
-for (let px_index = 0; px_index < totalPixels; px_index++){
-  pixels[px_index].addEventListener("mouseover", () => changeColor(pixels[px_index]))
 }
 
-function changeColor(pixel) {
+function changeColor(pixel){
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
@@ -44,3 +69,4 @@ function changeColor(pixel) {
 }
 
 createCanvas();
+pixelListeners();
