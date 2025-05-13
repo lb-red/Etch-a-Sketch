@@ -40,8 +40,7 @@ function createCanvas(){
       const pixelDiv = document.createElement("div");
       pixelDiv.setAttribute("class", "pixel");
       pixelDiv.style.flex = "1 1 0";
-
-      pixelDiv.addEventListener("mouseover", () => changeColor(pixelDiv))
+      pixelDiv.style.opacity = 0;
 
       pixelRow.appendChild(pixelDiv);
     }
@@ -53,7 +52,7 @@ function pixelListeners(){
   const totalPixels = pixels.length;
   
   for (let px_index = 0; px_index < totalPixels; px_index++){
-    pixels[px_index].addEventListener("mouseover", () => changeColor(pixels[px_index]))
+    pixels[px_index].addEventListener("mouseenter", (event) => changeColor(pixels[px_index]));
   }
 
 }
@@ -62,10 +61,15 @@ function changeColor(pixel){
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
-  const rgb = `rgb(${r}, ${g}, ${b})`;
 
-  pixel.style.backgroundColor = rgb;
-  console.log(rgb);
+  let a = parseFloat(pixel.style.opacity) + .1;
+  if (a>1) a = 1;
+  
+  const rgba = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+  pixel.style.backgroundColor = rgba;
+  pixel.style.opacity = a;
+  console.log(rgba + " " + a);
 }
 
 function adjustCanvasDimensions(){
