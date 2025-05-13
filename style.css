@@ -7,15 +7,37 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-content: stretch;
 }
 
 h1 {
   text-align: center;
 }
 
+.input-field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#grid-size {
+  width: 200px;
+  text-align: center;
+  font-size: 30px;
+}
+
+#change-grid {
+  margin-left: 20px;
+  max-height: 25px;
+}
+
 #container {
-  width: 850px;
-  height: 850px;
+  width: 800px;
+  height: 800px;
   border: solid rgb(0, 0, 154);
   align-self: center;
 

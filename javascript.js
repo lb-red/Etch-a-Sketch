@@ -1,5 +1,5 @@
-const gridWidth = 16;
-const gridLength = 16;
+let gridWidth = 16;
+let gridLength = 16;
 
 const canvas = document.querySelector("#container");
 let pixels;
@@ -29,17 +29,17 @@ function createCanvas(){
 pixels = document.getElementsByClassName("pixel");
 const totalPixels = pixels.length;
 
-for (let pixel = 0; pixel < totalPixels; pixel++){
-  pixels[pixel].addEventListener("mouseover", () => changeColor(pixels[pixel]))
+for (let px_index = 0; px_index < totalPixels; px_index++){
+  pixels[px_index].addEventListener("mouseover", () => changeColor(pixels[px_index]))
 }
 
-function changeColor(divPixel) {
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
+function changeColor(pixel) {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
   const rgb = `rgb(${r}, ${g}, ${b})`;
 
-  divPixel.style.backgroundColor = rgb;
+  pixel.style.backgroundColor = rgb;
   console.log(rgb);
 }
 
