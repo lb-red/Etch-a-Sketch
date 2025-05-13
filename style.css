@@ -37,8 +37,8 @@ h1 {
 }
 
 #container {
-  width: 800px;
-  height: 800px;
+  width: 99vw;
+  height: 85vh;
   border: solid rgb(0, 0, 0);
   background-color: white;
   align-self: center;

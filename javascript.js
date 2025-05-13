@@ -68,5 +68,19 @@ function changeColor(pixel){
   console.log(rgb);
 }
 
+function adjustCanvasDimensions(){
+  let canvasHeight = canvas.getBoundingClientRect().height;
+  let canvasWidth = canvas.getBoundingClientRect().width;
+
+  if (canvasHeight > canvasWidth){
+    canvas.setAttribute("style", `height:${canvasWidth}px`);
+  }
+  else {
+    canvas.setAttribute("style", `width:${canvasHeight}px`);
+  }
+  console.log(canvasHeight + " " + canvasWidth);
+}
+
+adjustCanvasDimensions();
 createCanvas();
 pixelListeners();
