@@ -2,6 +2,7 @@ const gridWidth = 16;
 const gridLength = 16;
 
 const canvas = document.querySelector("#container");
+let pixels;
 
 function createCanvas(){
   for (let canvas_Y = 0; canvas_Y < gridWidth; canvas_Y++){
@@ -18,9 +19,28 @@ function createCanvas(){
       pixelDiv.setAttribute("class", "pixel");
       pixelDiv.style.flex = "1 1 0";
 
+      pixelDiv.addEventListener("mouseover", () => changeColor(pixelDiv))
+
       pixelRow.appendChild(pixelDiv);
     }
   }
+}
+
+pixels = document.getElementsByClassName("pixel");
+const totalPixels = pixels.length;
+
+for (let pixel = 0; pixel < totalPixels; pixel++){
+  pixels[pixel].addEventListener("mouseover", () => changeColor(pixels[pixel]))
+}
+
+function changeColor(divPixel) {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  const rgb = `rgb(${r}, ${g}, ${b})`;
+
+  divPixel.style.backgroundColor = rgb;
+  console.log(rgb);
 }
 
 createCanvas();
